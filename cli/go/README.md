@@ -3,7 +3,7 @@
 Usage:
 
 ```shell
-$ go get github.com/kortex-hub/kortex-cli-api/cli/go@latest
+go get github.com/kortex-hub/kortex-cli-api/cli/go@latest
 ```
 
 ```go
