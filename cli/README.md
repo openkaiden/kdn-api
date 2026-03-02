@@ -18,3 +18,11 @@ kortex-cli list -o json
 ```
 
 The JSON output format is defined by the response schema in the OpenAPI specification.
+
+### Code generation
+
+When the openapi spec changes, the generated code must be generated again (this is enforced on PR check):
+
+```shell
+(cd cli/go && make gen)
+```
