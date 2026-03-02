@@ -14,7 +14,7 @@ The `openapi.yaml` file describes the commands available in the Kortex CLI:
 For a path `/list` with a GET operation, the corresponding CLI command would be:
 
 ```bash
-kortex list -o json
+kortex-cli list -o json
 ```
 
 The JSON output format is defined by the response schema in the OpenAPI specification.
