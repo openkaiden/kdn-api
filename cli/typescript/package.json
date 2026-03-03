@@ -7,7 +7,7 @@
     "provenance": true,
     "access": "public"
   },
-  "license": "MIT",
+  "license": "apache-2.0",
   "main": "",
   "types": "./index.d.ts",
   "scripts": {
