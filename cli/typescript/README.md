@@ -1,7 +1,7 @@
 # kortex-cli Types
 
 [![npm version](https://img.shields.io/npm/v/@kortex-hub/kortex-cli-api.svg)](https://www.npmjs.com/package/@kortex-hub/kortex-cli-api)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Apache-2.0](https://shields.io/badge/license-Apache%202-yellow.svg)](https://opensource.org/license/apache-2-0)
 
 TypeScript type definitions for the [kortex-cli](https://github.com/kortex-hub/kortex-cli), providing complete type safety when interacting with JSON output returned by the CLI.
 
@@ -38,4 +38,4 @@ type Server = components['schemas']['AgentsList'];
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the Apache 2.0 License - see the [LICENSE](LICENSE) file for details.
