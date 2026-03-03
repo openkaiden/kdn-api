@@ -31,11 +31,14 @@ jobs:
         name: Install pnpm
         with:
           run_install: false
+          package_json_file: cli/typescript/package.json
+          cache_dependency_path: cli/typescript/pnpm-lock.yaml
 
       - uses: actions/setup-node@395ad3262231945c25e8478fd5baf05154b1d79f # v6.1.0
         with:
           node-version: 24 # 24.x for npm publish with OIDC
           cache: 'pnpm'
+          cache-dependency-path: cli/typescript/pnpm-lock.yaml
 
       - name: Execute pnpm
         working-directory: ./cli/typescript
