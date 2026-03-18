@@ -89,6 +89,46 @@ paths:
                 $ref: '#/components/schemas/Error'
               example:
                 error: "Error: workspace not found: unknown-id"
+  /start:
+    get:
+      summary: Start a workspace
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspaceId'
+              example:
+                id: 2c5f16046476be368fcada501ac6cdc6bbd34ea80eb9ceb635530c0af64681ea
+        '400':
+          description: Error response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                error: "Error: workspace not found: unknown-id"
+  /stop:
+    get:
+      summary: Stop a workspace
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspaceId'
+              example:
+                id: 2c5f16046476be368fcada501ac6cdc6bbd34ea80eb9ceb635530c0af64681ea
+        '400':
+          description: Error response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                error: "Error: workspace not found: unknown-id"
 components:
   schemas:
     Error:
