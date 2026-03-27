@@ -13,6 +13,23 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/WorkspaceConfiguration'
+              example:
+                mounts:
+                  - host: "$SOURCES/../main"
+                    target: "$SOURCES/../main"
+                  - host: "$HOME/.gitconfig"
+                    target: "$HOME/.gitconfig"
+                    ro: true
+                  - host: "$HOME/.claude"
+                    target: "$HOME/.claude"
+                    ro: true
+                  - host: "/absolute/path/to/data"
+                    target: "/workspace/data"
+                environment:
+                  - name: "DEBUG"
+                    value: "true"
+                  - name: "API_KEY"
+                    secret: "my-api-key"
 components:
   schemas:
     WorkspaceConfiguration:
@@ -20,26 +37,31 @@ components:
       additionalProperties: false
       properties:
         mounts:
-          $ref: '#/components/schemas/Mounts'
+          type: array
+          items:
+            $ref: '#/components/schemas/Mount'
+          description: List of directories to mount in the workspace. Supports $SOURCES (workspace sources directory) and $HOME (user home directory) variables.
         environment:
           type: array
           items:
             $ref: '#/components/schemas/EnvironmentVariable'
 
-    Mounts:
+    Mount:
       type: object
       additionalProperties: false
+      required:
+        - host
+        - target
       properties:
-        dependencies:
-          type: array
-          items:
-            type: string
-          description: List of additional source directories to mount, with paths relative to the sources directory of the project (useful when working with git worktrees)
-        configs:
-          type: array
-          items:
-            type: string
-          description: List of home directories to mount, with paths relative to the HOME directory of the user
+        host:
+          type: string
+          description: Path in the host filesystem. Can use $SOURCES or $HOME variables (e.g., "$SOURCES/../main", "$HOME/.gitconfig", "/absolute/path")
+        target:
+          type: string
+          description: Path in the workspace filesystem where the host path will be mounted. Can use $SOURCES or $HOME variables.
+        ro:
+          type: boolean
+          description: Mount as read-only. Defaults to false (read-write).
 
     EnvironmentVariable:
       type: object
