@@ -78,6 +78,31 @@ paths:
                     paths:
                       source: /home/user/workspace2
                       configuration: /home/user/.kortex-cli/workspaces/workspace2
+  /info:
+    get:
+      summary: Display information about kortex-cli
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Info'
+              example:
+                version: 0.3.0
+                agents:
+                  - claude
+                  - goose
+                runtimes:
+                  - podman
+        '400':
+          description: Error response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                error: "Error: failed to list agents"
   /remove:
     get:
       summary: Remove a workspace
@@ -197,6 +222,24 @@ components:
       - agent
       - state
       - paths
+    Info:
+      type: object
+      additionalProperties: false
+      properties:
+        version:
+          type: string
+        agents:
+          type: array
+          items:
+            type: string
+        runtimes:
+          type: array
+          items:
+            type: string
+      required:
+      - version
+      - agents
+      - runtimes
     WorkspacesList:
       type: object
       additionalProperties: false
