@@ -38,6 +38,7 @@ paths:
                 name: workspace1
                 project: project1
                 agent: claude
+                state: stopped
                 paths:
                   source: /home/user/workspace1
                   configuration: /home/user/workspace1/.kortex
@@ -65,6 +66,7 @@ paths:
                     name: workspace1
                     project: project1
                     agent: claude
+                    state: running
                     paths:
                       source: /home/user/workspace1
                       configuration: /home/user/workspace1/.kortex
@@ -72,6 +74,7 @@ paths:
                     name: workspace2
                     project: project2
                     agent: claude
+                    state: stopped
                     paths:
                       source: /home/user/workspace2
                       configuration: /home/user/.kortex-cli/workspaces/workspace2
@@ -153,6 +156,13 @@ components:
           type: string
       required:
       - id
+    WorkspaceState:
+      type: string
+      enum:
+        - stopped
+        - running
+        - error
+        - unknown
     WorkspacePaths:
       type: object
       additionalProperties: false
@@ -176,6 +186,8 @@ components:
           type: string
         agent:
           type: string
+        state:
+          $ref: '#/components/schemas/WorkspaceState'
         paths:
           $ref: '#/components/schemas/WorkspacePaths'
       required:
@@ -183,6 +195,7 @@ components:
       - name
       - project
       - agent
+      - state
       - paths
     WorkspacesList:
       type: object
