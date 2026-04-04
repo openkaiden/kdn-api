@@ -38,6 +38,7 @@ paths:
                 name: workspace1
                 project: project1
                 agent: claude
+                model: model1
                 state: stopped
                 paths:
                   source: /home/user/workspace1
@@ -66,6 +67,7 @@ paths:
                     name: workspace1
                     project: project1
                     agent: claude
+                    model: model1
                     state: running
                     paths:
                       source: /home/user/workspace1
@@ -210,6 +212,8 @@ components:
         project:
           type: string
         agent:
+          type: string
+        model:
           type: string
         state:
           $ref: '#/components/schemas/WorkspaceState'

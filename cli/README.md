@@ -53,6 +53,7 @@ $ kortex-cli init --agent claude -v -o json
   "name": "workspace1",
   "project": "https://github.com/user/repo/",
   "agent": "claude",
+  "model": "model1",
   "paths": {
     "source": "/home/user/workspace1",
     "configuration": "/home/user/workspace1/.kortex"
@@ -69,6 +70,7 @@ $ kortex-cli init --agent claude --project my-project -v -o json
   "name": "workspace1",
   "project": "my-project",
   "agent": "claude",
+  "model": "model1",
   "paths": {
     "source": "/home/user/workspace1",
     "configuration": "/home/user/workspace1/.kortex"
@@ -87,6 +89,7 @@ $ kortex-cli workspace list -o json
       "name": "workspace1",
       "project": "https://github.com/user/repo/",
       "agent": "claude",
+      "model": "model1",
       "paths": {
         "source": "/home/user/workspace1",
         "configuration": "/home/user/workspace1/.kortex"
