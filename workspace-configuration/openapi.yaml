@@ -92,6 +92,11 @@ components:
           $ref: '#/components/schemas/McpConfiguration'
         network:
           $ref: '#/components/schemas/NetworkConfiguration'
+        secrets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Secret'
+          description: List of secrets to inject into the workspace.
 
     NetworkConfiguration:
       type: object
@@ -114,11 +119,6 @@ components:
           items:
             type: string
           description: List of CIDR ranges to allow in deny mode.
-        secrets:
-          type: array
-          items:
-            $ref: '#/components/schemas/Secret'
-          description: List of secrets to inject into the workspace.
 
     Secret:
       type: object
