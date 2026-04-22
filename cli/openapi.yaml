@@ -199,7 +199,19 @@ paths:
                 items:
                   - name: my-secret
                     type: github
-                    description: ""
+                    description: "GitHub token"
+                  - name: my-other-secret
+                    type: other
+                    description: "a secret for example.com API"
+                    envs:
+                      - EXAMPLE_API_KEY
+                      - EX_API_KEY
+                    hosts:
+                      - api.example.com
+                      - dev.example.com
+                    path: /
+                    header: Authorization
+                    headerTemplate: "Bearer ${value}"
         '400':
           description: Error response
           content:
@@ -334,6 +346,20 @@ components:
         type:
           type: string
         description:
+          type: string
+        envs:
+          type: array
+          items:
+            type: string
+        hosts:
+          type: array
+          items:
+            type: string
+        path:
+          type: string
+        header:
+          type: string
+        headerTemplate:
           type: string
       required:
       - name
