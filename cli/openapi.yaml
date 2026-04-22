@@ -165,6 +165,69 @@ paths:
                 $ref: '#/components/schemas/Error'
               example:
                 error: "Error: workspace not found: unknown-id"
+  /secret/create:
+    get:
+      summary: Create a secret
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SecretName'
+              example:
+                name: my-secret
+        '400':
+          description: Error response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                error: "Error: secret already exists: my-secret"
+  /secret/list:
+    get:
+      summary: List secrets
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SecretsList'
+              example:
+                items:
+                  - name: my-secret
+                    type: github
+                    description: ""
+        '400':
+          description: Error response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                error: "Error: failed to list secrets"
+  /secret/remove:
+    get:
+      summary: Remove a secret
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SecretName'
+              example:
+                name: my-secret
+        '400':
+          description: Error response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                error: "Error: secret not found: my-secret"
 components:
   schemas:
     Error:
@@ -252,5 +315,37 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Workspace'
+      required:
+      - items
+    SecretName:
+      type: object
+      additionalProperties: false
+      properties:
+        name:
+          type: string
+      required:
+      - name
+    SecretInfo:
+      type: object
+      additionalProperties: false
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+        description:
+          type: string
+      required:
+      - name
+      - type
+      - description
+    SecretsList:
+      type: object
+      additionalProperties: false
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/SecretInfo'
       required:
       - items
