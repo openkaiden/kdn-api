@@ -240,6 +240,33 @@ paths:
                 $ref: '#/components/schemas/Error'
               example:
                 error: "Error: secret not found: my-secret"
+  /service/list:
+    get:
+      summary: List secret services
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SecretServicesList'
+              example:
+                items:
+                  - name: github
+                    hostPattern: "api.github.com"
+                    headerName: "Authorization"
+                    headerTemplate: "Bearer ${value}"
+                    envVars:
+                      - GH_TOKEN
+                      - GITHUB_TOKEN
+        '400':
+          description: Error response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                error: "Error: failed to list secrets services"
 components:
   schemas:
     Error:
@@ -374,3 +401,33 @@ components:
             $ref: '#/components/schemas/SecretInfo'
       required:
       - items
+    SecretService:
+      type: object
+      additionalProperties: false
+      properties:
+        name:
+          type: string
+        hostPattern:
+          type: string
+        headerName:
+          type: string
+        headerTemplate:
+          type: string
+        envVars:
+          type: array
+          items:
+            type: string
+      required:
+        - name
+        - hostPattern
+        - headerName
+    SecretServicesList:
+      type: object
+      additionalProperties: false
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/SecretService'
+      required:
+        - items
