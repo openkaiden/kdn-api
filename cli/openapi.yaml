@@ -46,6 +46,10 @@ paths:
                 timestamps:
                   created: 1777383824532
                   started: 1777383824532
+                forwards:
+                  - target: 8080
+                    bind: "0.0.0.0"
+                    port: 18080
         '400':
           description: Error response
           content:
@@ -78,6 +82,10 @@ paths:
                     timestamps:
                       created: 1777383824532
                       started: 1777383824532
+                    forwards:
+                      - target: 8080
+                        bind: "0.0.0.0"
+                        port: 18080
                   - id: 20cb499a4561703e973631fa3036cc8be9a06b709759d23a7d7f6dd1df146d95
                     name: workspace2
                     project: project2
@@ -88,6 +96,7 @@ paths:
                       configuration: /home/user/.kdn/workspaces/workspace2
                     timestamps:
                       created: 1777383824532
+                    forwards: []
   /info:
     get:
       summary: Display information about kdn
@@ -324,6 +333,20 @@ components:
           format: int64
       required:
       - created
+    WorkspaceForward:
+      type: object
+      additionalProperties: false
+      properties:
+        target:
+          type: integer
+        bind:
+          type: string
+        port:
+          type: integer
+      required:
+      - target
+      - bind
+      - port
     Workspace:
       type: object
       additionalProperties: false
@@ -344,6 +367,17 @@ components:
           $ref: '#/components/schemas/WorkspacePaths'
         timestamps:
           $ref: '#/components/schemas/WorkspaceTimestamps'
+        forwards:
+          type: array
+          items:
+            $ref: '#/components/schemas/WorkspaceForward'
+          example:
+            - target: 8080
+              bind: "0.0.0.0"
+              port: 18080
+            - target: 5432
+              bind: "localhost"
+              port: 5433
       required:
       - id
       - name
@@ -352,6 +386,7 @@ components:
       - state
       - paths
       - timestamps
+      - forwards
     Info:
       type: object
       additionalProperties: false
