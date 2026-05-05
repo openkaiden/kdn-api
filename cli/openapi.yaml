@@ -257,6 +257,29 @@ paths:
                 $ref: '#/components/schemas/Error'
               example:
                 error: "Error: secret not found: my-secret"
+  /runtime/list:
+    get:
+      summary: List runtimes
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RuntimesList'
+              example:
+                items:
+                  - name: podman
+                    description: "Container-based runtime using Podman"
+                    local: true
+        '400':
+          description: Error response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                error: "Error: failed to list runtimes"
   /service/list:
     get:
       summary: List secret services
@@ -490,5 +513,29 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/SecretService'
+      required:
+        - items
+    RuntimeInfo:
+      type: object
+      additionalProperties: false
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        local:
+          type: boolean
+      required:
+        - name
+        - description
+        - local
+    RuntimesList:
+      type: object
+      additionalProperties: false
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/RuntimeInfo'
       required:
         - items
