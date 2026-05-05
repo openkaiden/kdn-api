@@ -50,6 +50,9 @@ paths:
                   hosts:
                     - "api.example.com"
                     - "registry.npmjs.org"
+                ports:
+                  - 8080
+                  - 5432
                 secrets:
                   - "my-github-secret"
                   - "my-other-secret"
@@ -81,6 +84,14 @@ components:
           $ref: '#/components/schemas/McpConfiguration'
         network:
           $ref: '#/components/schemas/NetworkConfiguration'
+        ports:
+          type: array
+          uniqueItems: true
+          items:
+            type: integer
+            minimum: 1
+            maximum: 65535
+          description: List of TCP ports to expose from the workspace.
         secrets:
           type: array
           items:
