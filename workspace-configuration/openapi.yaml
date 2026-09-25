@@ -15,7 +15,7 @@ paths:
                 $ref: '#/components/schemas/WorkspaceConfiguration'
               example:
                 description: "Backend service workspace with Node.js and database access"
-                image: "ghcr.io/openkaiden/agent-base:latest"
+                image: "ghcr.io/my-org/my-custom-agent:1.0.0"
                 mounts:
                   - host: "$SOURCES/../main"
                     target: "$SOURCES/../main"
