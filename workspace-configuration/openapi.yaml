@@ -15,6 +15,7 @@ paths:
                 $ref: '#/components/schemas/WorkspaceConfiguration'
               example:
                 description: "Backend service workspace with Node.js and database access"
+                image: "ghcr.io/openkaiden/agent-base:latest"
                 mounts:
                   - host: "$SOURCES/../main"
                     target: "$SOURCES/../main"
@@ -71,6 +72,9 @@ components:
           type: string
           maxLength: 500
           description: Human-readable description of the workspace.
+        image:
+          type: string
+          description: Container image to use for the workspace sandbox. When not specified, the agent's default base image is used.
         mounts:
           type: array
           items:
