@@ -58,6 +58,9 @@ paths:
                 secrets:
                   - "my-github-secret"
                   - "my-other-secret"
+                presets:
+                  - "github"
+                  - "npm-registry"
                 features:
                   "ghcr.io/devcontainers/features/node:1": {}
                   "ghcr.io/devcontainers/features/python:1":
@@ -106,6 +109,11 @@ components:
           items:
             type: string
           description: List of secret names to inject into the workspace.
+        presets:
+          type: array
+          items:
+            type: string
+          description: List of preset identifiers to apply to the workspace. Presets are provided by extensions and selected by the user.
         features:
           type: object
           additionalProperties:
